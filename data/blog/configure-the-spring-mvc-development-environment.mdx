@@ -1,5 +1,5 @@
 ---
-title: 配置 Spring MVC 开发环境
+title: '配置 Spring MVC 开发环境'
 date: '2022-07-21'
 draft: false
 tags: ['Spring', 'Thymeleaf','MyBatis','SLF4J', 'MVC','guide']
@@ -84,7 +84,7 @@ Spring MVC 与许多其他 Web 框架一样，围绕前端控制器模式设计�
 
 
 ## 配置 Thymeleaf
-Thymeleaf 提供了一组 Spring 集成，允许您将其用作 Spring MVC 应用程序中 JSP 的全功能替代品。为了实现更容易和更好的集成，Thymeleaf 提供了一种语法，它专门实现了所有需要的特性，以便它与 Spring 正确工作。这种特定语法基于 Thymeleaf 标准语法，并在名为 `org.thymeleaf.spring4.dialect.SpringStandardDialect` 的类中实现，该类实际上是从 `org.thymeleaf.standard.StandardDialect` 扩展而来的。
+Thymeleaf 提供了一组 Spring 集成，允许您将其用作 Spring MVC 应用程序中 JSP 的全功能替代品。为了实现更容易和更好的集成，Thymeleaf 提供了一种语法，它专门实现了所有需要的特性，以便它与 Spring 正确工作。这种特定语法基于 Thymeleaf 标准语法，并在名为 `org.thymeleaf.spring4.dialect.Spring-StandardDialect` 的类中实现，该类实际上是从 `org.thymeleaf.standard.StandardDialect` 扩展而来的。
 
 创建一个新模板引擎类的实例，该类自动执行所有必需的配置步骤：`org.thymeleaf.spring4.SpringTemplateEngine`。
 
