@@ -8,13 +8,15 @@ authors: ['default']
 #canonicalUrl: https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog
 ---
 
+
+![Demo](https://s2.loli.net/2022/07/23/iBe5amr3NQwSIKV.png)
+
+
 <TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
 
 
 Spring Web MVC 是基于 Servlet API 构建的原始 Web 框架，从一开始就包含在 Spring Framework 中。 正式名称“Spring Web MVC”来自其源模块的名称（[spring-webmvc](https://github.com/spring-projects/spring-framework/tree/main/spring-webmvc)），但更常见的是“Spring MVC”。
 
-
-![Demo](https://s2.loli.net/2022/07/23/iBe5amr3NQwSIKV.png)
 
 ## DispatcherServlet
 
@@ -84,7 +86,7 @@ Spring MVC 与许多其他 Web 框架一样，围绕前端控制器模式设计�
 ## 配置 Thymeleaf
 Thymeleaf 提供了一组 Spring 集成，允许您将其用作 Spring MVC 应用程序中 JSP 的全功能替代品。为了实现更容易和更好的集成，Thymeleaf 提供了一种语法，它专门实现了所有需要的特性，以便它与 Spring 正确工作。这种特定语法基于 Thymeleaf 标准语法，并在名为 `org.thymeleaf.spring4.dialect.SpringStandardDialect` 的类中实现，该类实际上是从 `org.thymeleaf.standard.StandardDialect` 扩展而来的。
 
-创建一个新模板引擎类的实例，该类自动执行所有必需的配置步骤：org.thymeleaf.spring4.SpringTemplateEngine。
+创建一个新模板引擎类的实例，该类自动执行所有必需的配置步骤：`org.thymeleaf.spring4.SpringTemplateEngine`。
 
 bean 配置：
 ```xml
@@ -157,11 +159,11 @@ Thymeleaf View Resolver 的配置与 JSP 的配置非常相似：
 请注意，我们不需要 `prefix` 或 `suffix` 参数，因为它们已经在模板解析器中指定（它又被传递给模板引擎）。
 
 ## 配置 MyBatis-Spring
-MyBatis-Spring 会帮助你将 MyBatis 代码无缝地整合到 Spring 中。它将允许 MyBatis 参与到 Spring 的事务管理之中，创建映射器 mapper 和 SqlSession 并注入到 bean 中，以及将 Mybatis 的异常转换为 Spring 的 DataAccessException。 最终，可以做到应用代码不依赖于 MyBatis，Spring 或 MyBatis-Spring。
+MyBatis-Spring 会帮助你将 MyBatis 代码无缝地整合到 Spring 中。它将允许 MyBatis 参与到 Spring 的事务管理之中，创建映射器 `mapper` 和 `SqlSession` 并注入到 bean 中，以及将 Mybatis 的异常转换为 Spring 的 `DataAccessException`。 最终，可以做到应用代码不依赖于 MyBatis，Spring 或 MyBatis-Spring。
 
-要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：一个 SqlSessionFactory 和至少一个数据映射器类。
+要和 Spring 一起使用 MyBatis，需要在 Spring 应用上下文中定义至少两样东西：一个 `SqlSessionFactory` 和至少一个数据映射器类。
 
-在 MyBatis-Spring 中，可使用 SqlSessionFactoryBean来创建 SqlSessionFactory。 要配置这个工厂 bean，只需要把下面代码放在 Spring 的 XML 配置文件中：
+在 MyBatis-Spring 中，可使用 `SqlSessionFactoryBean` 来创建 `SqlSessionFactory`。 要配置这个工厂 bean，只需要把下面代码放在 Spring 的 XML 配置文件中：
 ```xml
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -182,7 +184,7 @@ MyBatis-Spring 会帮助你将 MyBatis 代码无缝地整合到 Spring 中。它
 
 一个常用的属性是 `configLocation`，它用来指定 MyBatis 的 XML 配置文件路径。它在需要修改 MyBatis 的基础配置非常有用。通常，基础配置指的是 `<settings>` 或 `<typeAliases>` 元素。
 
-需要注意的是，这个配置文件并不需要是一个完整的 MyBatis 配置。确切地说，任何环境配置（`<environments>`），数据源（`<DataSource>`）和 MyBatis 的事务管理器（`<transactionManager>`）都会被忽略。 `SqlSessionFactoryBean` 会创建它自有的 `MyBatis`环境配置（`Environment`），并按要求设置自定义环境的值。
+需要注意的是，这个配置文件并不需要是一个完整的 MyBatis 配置。确切地说，任何环境配置（`<environments>`），数据源（`<DataSource>`）和 MyBatis 的事务管理器（`<transactionManager>`）都会被忽略。 `SqlSessionFactoryBean` 会创建它自有的 MyBatis 环境配置（`Environment`），并按要求设置自定义环境的值。
 
 如果 MyBatis 在映射器类对应的路径下找不到与之相对应的映射器 XML 文件，那么也需要配置文件。这时有两种解决办法：第一种是手动在 MyBatis 的 XML 配置文件中的 `<mappers>` 部分中指定 XML 文件的类路径；第二种是设置工厂 bean 的 `mapperLocations` 属性。
 
@@ -211,11 +213,11 @@ MyBatis-Spring 会帮助你将 MyBatis 代码无缝地整合到 Spring 中。它
 ```
 
 ## 配置 SLF4J
-Java 的简单日志外观 (SLF4J) 用作各种日志框架（例如 java.util.logging、logback、log4j）的简单外观或抽象，允许最终用户在部署时插入所需的日志框架。
+Java 的简单日志外观 (SLF4J) 用作各种日志框架（例如 `java.util.logging`、`logback`、`log4j`）的简单外观或抽象，允许最终用户在部署时插入所需的日志框架。
 
-启用 SLF4J 的库意味着仅添加一个强制依赖项，即 slf4j-api.jar。 如果在类路径上没有找到绑定/提供者，那么 SLF4J 将默认为无操作实现。
+启用 SLF4J 的库意味着仅添加一个强制依赖项，即 `slf4j-api.jar`。 如果在类路径上没有找到绑定/提供者，那么 SLF4J 将默认为无操作实现。
 
-从 1.7.35 版开始，通过 Maven `<relocation>` 指令声明对重定向的依赖。 org.slf4j:slf4j-log4j12org.slf4j:slf4j-reload4j
+从 1.7.35 版开始，通过 Maven `<relocation>` 指令声明对重定向的依赖。 `org.slf4j:slf4j-log4j12org.slf4j:slf4j-reload4j`
 ```xml
 <dependency> 
   <groupId>org.slf4j</groupId>
@@ -247,7 +249,6 @@ log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1
 ```
 
 
-> 演示项目：https://github.com/Hentai02/springmvc-helloword
 
 ## 官方文档
 [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/)

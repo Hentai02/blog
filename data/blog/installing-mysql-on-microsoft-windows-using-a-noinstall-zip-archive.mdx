@@ -11,14 +11,9 @@ authors: ['default']
 ![MySQL](https://s2.loli.net/2022/07/27/Q4KBXqfTAb6WcZk.png)
 
 ## 初始化数据目录
-MySQL 5.7.7 之前的 Windows 发行版包括一个数据目录，其中包含一组数据库中的预初始化帐户` mysql`。从 5.7.7 开始，使用该软件包执行的 Windows 安装操作不包括数据目录。 
+MySQL 5.7.7 之前的 Windows 发行版包括一个数据目录，其中包含一组数据库中的预初始化帐户`mysql`。从 5.7.7 开始，使用该软件包执行的 Windows 安装操作不包括数据目录。 
 
 从 MySQL 5.7.6 开始，[ZIP Archive](https://downloads.mysql.com/archives/community/) 不再包含目录。 要通过创建数据目录并填充 mysql 系统数据库中的表来初始化 MySQL 安装，使用 `--initialize` 或 `--initialize-insecure` 初始化 MySQL。 
-```bash
-.\bin\mysqld.exe --initialize
-# 或
-.\bin\mysqld.exe --initialize-insecure
-```
 
 ## 将 MySQL 作为 Windows 服务启动
 在 Windows 上，运行 MySQL 的推荐方法是将其安装为 Windows 服务，以便 MySQL 在 Windows 启动和停止时自动启动和停止。 作为服务安装的 MySQL 服务器也可以使用 NET 命令或图形服务管理工具从命令行进行控制。 通常，要将 MySQL 安装为 Windows 服务，应该以**管理员权限运行**。
@@ -32,7 +27,7 @@ MySQL 5.7.7 之前的 Windows 发行版包括一个数据目录，其中包含�
 # 输出
 Service successfully installed.
 ```
---install 命令不会启动服务器。
+`--install` 命令不会启动服务器。
 
 ![MySQL 服务](https://s2.loli.net/2022/07/27/qXIlyQg9etihFZE.png)
 
@@ -44,7 +39,7 @@ sc start MySQL
 net start MySQL
 ```
 
-当作为服务运行时，`mysqld` 无法访问控制台窗口，因此在那里看不到任何消息。 如果 `mysqld` 没有启动，请检查错误日志以查看服务器是否在其中写入任何消息以指示问题的原因。 错误日志位于 MySQL 数据目录中（例如， C:\Program Files\MySQL\MySQL Server 5.7\data.err ）。
+当作为服务运行时，`mysqld` 无法访问控制台窗口，因此在那里看不到任何消息。 如果 `mysqld` 没有启动，请检查错误日志以查看服务器是否在其中写入任何消息以指示问题的原因。 错误日志位于 MySQL 数据目录中（例如， `C:\Program Files\MySQL\MySQL Server 5.7\data.err` ）。
 
 当 MySQL 服务器已作为服务安装并且该服务正在运行时，Windows 会在 Windows 关闭时自动停止该服务。 也可以使用服务管理工具、`sc stop mysqld_service_name` 命令、`NET STOP mysqld_service_name` 命令或 `mysqladmin shutdown` 命令手动停止服务器。
 
