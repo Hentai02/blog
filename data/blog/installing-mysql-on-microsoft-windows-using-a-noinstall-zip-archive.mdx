@@ -3,7 +3,7 @@ title: 在 Windows 上安装 MySQL Community Server
 date: '2022-07-27 11:01:10'
 tags: ['MySQL','Windows', 'guide']
 draft: false
-summary: 'MySQL 5.7.7及以后版本不再默认包含数据目录，需要使用 `--initialize` 或 `--initialize-insecure` 初始化。安装MySQL为Windows服务可以通过命令 `.\bin\mysqld.exe --install` 实现，启动服务使用 `sc start MySQL` 或 `net start MySQL`。要连接MySQL服务器，使用 `.\bin\mysql -h localhost -u root -p --default-character-set=utf8` 命令，修改密码可使用 `GRANT ALL PRIVILEGES`。删除服务时，首先停止服务，然后使用 `SC DELETE MySQL` 或 `mysqld --remove` 删除服务。'
+summary: 'MySQL 5.7.7 及以后版本不再默认包含数据目录，需要使用 --initialize 或 --initialize-insecure 初始化。安装 MySQL 为 Windows 服务可以通过命令  .\bin\mysqld.exe --install 实现，启动服务使用 sc start MySQL 或 net start MySQL。'
 authors: ['default']
 ---
 
