@@ -6,8 +6,8 @@ const siteMetadata = {
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'zh-cn',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://hentai02.github.io',
-  siteRepo: 'https://github.com/Hentai02/hentai02.github.io',
+  siteUrl: 'https://blog-nine-roan-35.vercel.app',
+  siteRepo: 'https://github.com/Hentai02/blog',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   mastodon: 'https://mastodon.social/@mastodonuser',
