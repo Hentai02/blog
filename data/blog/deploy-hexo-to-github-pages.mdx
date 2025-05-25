@@ -1,0 +1,107 @@
+---
+title: 将 Hexo 部署到 GitHub Pages
+date: '2022-07-20 14:47:23'
+draft: false
+tags: ['Hexo','Github Pages']
+summary: 'Hexo是一个快速、简洁的静态博客框架。安装Hexo需要先安装Node.js和Git，并使用npm安装Hexo-cli。创建博客后，可以通过 `hexo init` 命令初始化博客目录并使用 `hexo server` 启动本地服务器。在部署过程中，需在GitHub创建个人访问令牌并配置 `_config.yml` 文件，之后安装 `hexo-deployer-git` 插件，使用 `hexo clean && hexo deploy` 部署到GitHub Pages。可以通过Gitalk实现评论功能，还可以设置自定义域名来访问博客。'
+authors: ['default']
+---
+
+
+## 安装
+安装 Hexo 相当简单，只需要先安装下列应用程序即可：
+- [Node.js](https://nodejs.org/en/download/releases/) (Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本)
+- [Git](http://git-scm.com/)
+
+| Hexo 版本	  | 最低兼容 Node.js 版本 |
+| ----------- | ----------- |
+| 6.0+      | 12.13.0       |
+| 5.0+   | 10.13.0        |
+| 4.1 - 4.2   | 8.10        |
+| 4.0   | 8.6        |
+
+### 安装 Hexo
+所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。
+```sh
+npm install hexo-cli -g
+```
+
+安装 Hexo 完成后，执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。
+```sh
+hexo init blog
+cd blog
+npm install
+```
+安装完成后，输入`hexo server`以下命令以启动服务器，网站会在 http://localhost:4000 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，无须重启服务器。
+
+### 建站
+新建完成后，指定文件夹的目录如下：
+```
+.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+```
+**_config.yml**
+网站的 [配置](https://hexo.io/zh-cn/docs/configuration) 信息，您可以在此配置大部分的参数。
+
+**package.json**
+应用程序的信息。[EJS](https://ejs.co/), [Stylus](http://learnboost.github.io/stylus/) 和 [Markdown](http://daringfireball.net/projects/markdown/) renderer 已默认安装，可以自由移除。
+
+**scaffolds**
+[模版](https://hexo.io/zh-cn/docs/writing) 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
+Hexo的模板是指在新建的文章文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。
+
+**source**
+资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。
+
+**themes**
+[主题](https://hexo.io/zh-cn/docs/themes) 文件夹。Hexo 会根据主题来生成静态页面。
+
+## 部署
+
+1. 新建一个 repository。如果你希望你的站点能通过域名 `<你的 GitHub 用户名>.github.io` 访问，你的 repository 应该直接命名为 `<你的 GitHub 用户名>.github.io`。
+2. 前往 GitHub 新建 [Personal Access Token](https://github.com/settings/tokens)，只勾选 repo 的权限并生成一个新的 Token。Token 生成后请复制并保存好。
+3. 在 `_config.yml`（如果有已存在的请删除）添加如下配置：
+   ```yml
+   ## Docs: https://hexo.io/docs/one-command-deployment
+   deploy:
+   type: 'git'
+   repo: https://github.com/Hentai02/hentai02.github.io.git
+   branch: gh-pages
+   token: Personal Access Token
+    ```
+4. 安装 [hexo-deployer-git](https://github.com/hexojs/hexo-deployer-git)。
+   ```sh
+   npm install hexo-deployer-git --save
+   ```
+5. 运行 `hexo clean && hexo deploy `。
+6. 查看 username.github.io 上的网页是否部署成功。
+
+## Gitalk
+NexT主题Gitalk配置
+```yml
+# Gitalk
+# For more information: https://gitalk.github.io
+gitalk:
+  client_id: GitHub Application Client ID.
+  client_secret: GitHub Application Client Secret.
+  repo: gitalk-comments
+  github_id: Hentai02 # GitHub repository 所有者
+  admin_user: Hentai02 # GitHub repository 的所有者和合作者
+  #distraction_free_mode: true # 类似Facebook评论框的全屏遮罩效果.
+  language: zh-CN
+```
+
+## 自定义域名
+1. 自定义域名。打开 repository 点击 `Settings/Pages` 在 `Custom domain` 中填入域名并保存。
+2. 添加一条主机记录（主机记录相当于域名的前缀，比如 www），记录类型 `CNAME`（将域名指向另一个域名地址，与其保持相同解析，如 hentai02.github.io）。
+
+## 官方文档
+[NexT Documentation](https://theme-next.js.org/docs/)
+[Hexo Documentation](https://hexo.io/docs/)
+
