@@ -1,6 +1,6 @@
 ---
 title: 配置 Spring MVC 开发环境
-date: '2022-07-21 18:37:20'
+date: '2022-07-21'
 draft: false
 tags: ['Spring', 'Thymeleaf','MyBatis','SLF4J', 'MVC','guide']
 summary: '配置 Spring MVC 开发环境时，需引入 Spring、Thymeleaf、MyBatis 和 SLF4J。Spring MVC 负责处理请求和视图渲染，Thymeleaf 用于生成动态网页，MyBatis 简化数据库操作，SLF4J 进行日志管理。通过 Maven 或 Gradle 配置依赖，构建高效、可维护的 Web 应用。'
@@ -84,7 +84,7 @@ Spring MVC 与许多其他 Web 框架一样，围绕前端控制器模式设计�
 
 
 ## 配置 Thymeleaf
-Thymeleaf 提供了一组 Spring 集成，允许您将其用作 Spring MVC 应用程序中 JSP 的全功能替代品。为了实现更容易和更好的集成，Thymeleaf 提供了一种语法，它专门实现了所有需要的特性，以便它与 Spring 正确工作。这种特定语法基于 Thymeleaf 标准语法，并在名为 `org.thymeleaf.spring4.dialect.SpringStandardDialect` 的类中实现，该类实际上是从 `org.thymeleaf.standard.StandardDialect` 扩展而来的。
+Thymeleaf 提供了一组 Spring 集成，允许您将其用作 Spring MVC 应用程序中 JSP 的全功能替代品。为了实现更容易和更好的集成，Thymeleaf 提供了一种语法，它专门实现了所有需要的特性，以便它与 Spring 正确工作。这种特定语法基于 Thymeleaf 标准语法，并在名为 org.thymeleaf.spring4.dialect.SpringStandardDialect 的类中实现，该类实际上是从 org.thymeleaf.standard.StandardDialect 扩展而来的。
 
 创建一个新模板引擎类的实例，该类自动执行所有必需的配置步骤：`org.thymeleaf.spring4.SpringTemplateEngine`。
 
@@ -114,7 +114,7 @@ Spring MVC 中有两个接口符合其模板系统的核心：
 - org.springframework.web.servlet.View
 - org.springframework.web.servlet.ViewResolver
 
-在我们的应用程序中查看模型页面，并允许我们通过将它们定义为 bean 来修改和预定义它们的行为。 视图负责渲染实际的 HTML 界面，通常通过执行某些模板引擎，如 Thymeleaf。
+在应用程序中查看模型页面，并允许通过将它们定义为 bean 来修改和预定义它们的行为。 视图负责渲染实际的 HTML 界面，通常通过执行某些模板引擎，如 Thymeleaf。
 
 ViewResolver 是负责为特定操作和语言环境获取 View 对象的对象。 通常，Controller 要求 ViewResolver 转发到具有特定名称的视图（Controller 方法返回的字符串），然后应用程序中的所有视图解析器按有序链执行，直到其中一个能够解析该视图，其中 如果返回 View 对象并将控制权传递给它以呈现 HTML。
 
@@ -132,7 +132,7 @@ ViewResolver 是负责为特定操作和语言环境获取 View 对象的对象�
 ```
 
 快速查看它的属性就足以了解它是如何配置的：
-- `viewClass` 建立 View 实例的类。 这是 JSP 解析器所需要的，但当我们使用 Thymeleaf 时根本不需要它。
+- `viewClass` 建立 View 实例的类。 这是 JSP 解析器所需要的，但当使用 Thymeleaf 时根本不需要它。
 - `prefix` 和 `suffix` 与 Thymeleaf 的 TemplateResolver 对象中相同名称的属性类似的方式工作。
 - `order` 建立在链中查询 ViewResolver 的顺序。
 - `viewNames` 允许定义（使用通配符）将由此 ViewResolver 解析的视图名称。
@@ -156,7 +156,7 @@ Thymeleaf View Resolver 的配置与 JSP 的配置非常相似：
 
 `templateEngine` 参数就是定义的 `SpringTemplateEngine` 对象。 其他两个（`order` 和 `viewNames`）都是可选的，与之前看到的 JSP ViewResolver 中的含义相同。
 
-请注意，我们不需要 `prefix` 或 `suffix` 参数，因为它们已经在模板解析器中指定（它又被传递给模板引擎）。
+请注意，不需要指定 `prefix` 或 `suffix` 参数，因为它们已经在模板解析器中指定（它又被传递给模板引擎）。
 
 ## 配置 MyBatis-Spring
 MyBatis-Spring 会帮助你将 MyBatis 代码无缝地整合到 Spring 中。它将允许 MyBatis 参与到 Spring 的事务管理之中，创建映射器 `mapper` 和 `SqlSession` 并注入到 bean 中，以及将 Mybatis 的异常转换为 Spring 的 `DataAccessException`。 最终，可以做到应用代码不依赖于 MyBatis，Spring 或 MyBatis-Spring。
