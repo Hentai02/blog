@@ -1,18 +1,18 @@
 {
-  "markdown": 4,
-  "code": 1,
-  "features": 1,
+  "mysql": 1,
+  "windows": 1,
+  "guide": 4,
   "spring": 1,
   "thymeleaf": 1,
   "mybatis": 1,
   "slf4j": 1,
   "mvc": 1,
-  "guide": 4,
   "hexo": 1,
   "github-pages": 1,
-  "github": 1,
+  "markdown": 4,
   "next-js": 1,
-  "mysql": 1,
-  "windows": 1,
-  "images": 1
+  "github": 1,
+  "images": 1,
+  "code": 1,
+  "features": 1
 }
