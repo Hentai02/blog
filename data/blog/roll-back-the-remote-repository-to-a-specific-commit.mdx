@@ -1,0 +1,33 @@
+---
+title: 将远程仓库回滚到特定的提交
+date: '2025-05-27'
+tags: ['git', 'github','guide']
+draft: false
+summary: '使用 git reset --hard <commit-hash> 将本地仓库回滚到特定提交，再使用 git push --force 强制推送到远程仓库。'
+---
+
+## 查看历史提交
+```bash 
+git log --oneline
+```
+你会看到像这样的输出：
+```
+bf89837 (HEAD -> main, origin/main) Publish the merged commit article and rollback Giscus automatic theme switching
+2114e10 Added automatic switching of Giscus theme
+fe7e5ee Modify the article format and update the article overflow className
+8ee480c Save changes to tag-data.json before rebase
+85fa464 Fixed the prettier error
+...
+```
+找到想要回退的那个 commit 哈希，比如 fe7e5ee
+
+## 回退到那个提交
+它会恢复工作目录的文件，但不会动你的 Git 历史（即不会回退 HEAD 指针）。
+```bash
+git checkout fe7e5ee # 切换到那个状态确认
+```
+确认无误后执行
+```bash
+git reset --hard fe7e5ee
+```
+命令将本地仓库重置到提交 fe7e5ee，同时会丢弃工作区和暂存区的所有更改，使代码库完全恢复到该提交的状态。
