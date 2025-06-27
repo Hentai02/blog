@@ -1,7 +1,11 @@
 {
+  "ubuntu": 1,
+  "bbr": 1,
+  "git": 2,
+  "github": 3,
+  "guide": 6,
   "mysql": 1,
   "windows": 1,
-  "guide": 4,
   "spring": 1,
   "thymeleaf": 1,
   "mybatis": 1,
@@ -11,7 +15,6 @@
   "github-pages": 1,
   "markdown": 4,
   "next-js": 1,
-  "github": 1,
   "images": 1,
   "code": 1,
   "features": 1

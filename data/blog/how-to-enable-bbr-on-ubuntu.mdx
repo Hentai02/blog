@@ -1,0 +1,64 @@
+---
+title: 如何在 Ubuntu 24.04、22.04 或 20.04 上启用 BBR
+date: '2025-06-21'
+tags: ['Ubuntu', 'BBR']
+draft: false
+summary: BBR（Bottleneck Bandwidth and RTT）是 Google 开发的一种新型 TCP 拥塞控制算法，可显著提高网络吞吐量并降低延迟，特别适用于高丢包、高延迟环境下的传输优化。本文将带你快速了解并在 Ubuntu 20.04、22.04 和 24.04 系统上启用 BBR。
+---
+
+BBR（Bottleneck Bandwidth and Round-trip propagation time）是 Google 开发的一种先进的 TCP 拥塞控制算法。它旨在通过优化数据包在网络上的发送方式来实现更高的带宽和更低的延迟。BBR 尤其适用于高速长距离网络，是提升网络性能和效率的绝佳选择。
+
+## 检查当前 TCP 拥塞控制算法
+在启用 BBR 之前，请先确定系统当前使用的 TCP 拥塞控制算法。在终端中运行以下命令进行检查：
+```sh
+sysctl net.ipv4.tcp_congestion_control
+```
+执行指定的命令将显示系统当前采用的 TCP 拥塞控制算法：
+```sh
+net.ipv4.tcp_congestion_control = cubic
+```
+
+前面提到的命令显示了系统当前的 TCP 拥塞控制算法。通常，系统默认将算法设置为“cubic”。
+
+## 启用 BBR
+要在 Ubuntu 系统上激活 BBR，需要修改 sysctl 配置文件。此文件配置 Linux 操作系统中的各种内核参数。在终端中执行以下命令来修改 sysctl 配置文件：
+```conf
+sudo nano /etc/sysctl.conf
+```
+这将在 nano 文本编辑器中打开 sysctl 配置文件。
+
+接下来，将以下几行添加到 sysctl 配置文件中：
+```sh
+net.core.default_qdisc=fq
+net.ipv4.tcp_congestion_control=bbr
+# 或者直接执行这两行
+sudo sh -c 'echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf'
+sudo sh -c 'echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf'
+```
+第一行将默认队列规则设置为 fq，这是 BBR 正常运行的先决条件。第二行将 BBR 指定为 TCP 拥塞控制算法。要保存更改，请按 Ctrl + O。要退出 nano 文本编辑器，请按 Ctrl + X。
+
+
+## 应用 BBR 更改
+
+要将更改应用到 sysctl 配置文件，请在终端中运行以下命令：
+```sh
+sudo sysctl -p
+```
+此命令将把更改应用到 sysctl 配置文件中指定的内核参数。
+
+## 验证 BBR 是否已启用
+在终端中运行以下命令确认 BBR 的激活：
+```sh
+sysctl net.ipv4.tcp_congestion_control
+# （可选）使用下面的命令检查 BBR 模块是否已经加载到内核中
+lsmod | grep bbr
+```
+
+此命令将显示当前系统上运行的 TCP 拥塞控制算法。如果系统启用了 BBR，则输出将显示“bbr”。
+
+```sh
+net.ipv4.tcp_congestion_control = bbr
+```
+
+![](/static/images/bbr_status.png)
+
