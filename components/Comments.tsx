@@ -7,6 +7,7 @@ import { useTheme } from 'next-themes'
 
 export default function Comments({ slug }: { slug: string }) {
   const [loadComments, setLoadComments] = useState(false)
+  const { theme, resolvedTheme } = useTheme()
 
   if (!siteMetadata.comments?.provider) {
     return null
@@ -14,7 +15,6 @@ export default function Comments({ slug }: { slug: string }) {
 
   if (siteMetadata.comments.provider === 'giscus' && siteMetadata.comments.giscusConfig?.theme) {
      // 动态切换 Giscus 主题
-     const { theme, resolvedTheme } = useTheme()
      siteMetadata.comments.giscusConfig.theme = theme === 'system' ? resolvedTheme : theme
   }
 
