@@ -12,11 +12,11 @@ export default function Comments({ slug }: { slug: string }) {
     return null
   }
 
-  // if(siteMetadata.comments.giscusConfig?.theme){
+  if(siteMetadata.comments.giscusConfig?.theme){
   //   // 动态切换 Giscus 主题
-  //   const { theme, resolvedTheme } = useTheme()
-  //   siteMetadata.comments.giscusConfig.theme = theme === 'system' ? resolvedTheme : theme
-  // }
+     const { theme, resolvedTheme } = useTheme()
+     siteMetadata.comments.giscusConfig.theme = theme === 'system' ? resolvedTheme : theme
+  }
 
   return (
     <>
