@@ -14,8 +14,8 @@ export default function Comments({ slug }: { slug: string }) {
   }
 
   if (siteMetadata.comments.provider === 'giscus' && siteMetadata.comments.giscusConfig?.theme) {
-     // 动态切换 Giscus 主题
-     siteMetadata.comments.giscusConfig.theme = theme === 'system' ? resolvedTheme : theme
+    // 动态切换 Giscus 主题
+    siteMetadata.comments.giscusConfig.theme = theme === 'system' ? resolvedTheme : theme
   }
 
   return (
