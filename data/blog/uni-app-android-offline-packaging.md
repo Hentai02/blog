@@ -7,8 +7,6 @@ type: Blog
 summary: '对应HBuilderX的云端打包功能，uni-app、5+ App等项目发行为原生App时，无需将App资源及打包要使用的签名证书等提交到云端打包服务器，在开发者本地配置的原生开发环境中生成安装包apk/ipa。'
 ---
 
-## uni-app：Android离线打包
-
 App离线开发工具包，即App离线SDK，是把App运行环境（runtime）封装为原生开发调用接口，开发者可以在自己的 Android 及 iOS 原生开发环境配置工程使用，包括 Android离线开发SDK 及 iOS离线开发SDK。
 
 ### AppKey
